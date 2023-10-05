@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Citta";
+}
+
+
+
+<div class="container text-center mt-5">
+
+    <h2 class="text-center">Lista di spedizioni raggruppate per Città destinataria</h2>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-hover text-center w-50 mx-auto">
+
+            <thead class="bg-warning">
+                <tr>
+                    <th>Destinazione</th>
+                    <th>Numero Spedizioni</th>
+                 
+                </tr>
+            </thead>
+            <tbody class="bg-warning bg-opacity-25" id="tabellaSpedizioni">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("Citta", "Corriere")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Popola la tabella con i dati JSON
+                    var tableBody = $('#tabellaSpedizioni');
+                    $.each(data, function (index, item) {
+                        var row = '<tr>';
+                        row += '<td>' + item.Destinazione + '</td>';
+                        row += '<td>' + item.NumeroSpedizioni + '</td>';
+                        row += '</tr>';
+                        tableBody.append(row);
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+}

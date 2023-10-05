@@ -1,0 +1,38 @@
+﻿@model Gestionale.Models.User
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+
+<div class="tracking-container mt-5">
+    <h2 class="mb-4">Unisciti a noi </h2>
+    @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Username)
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control mt-1", required = "required" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required", type = "password" })
+        </div>
+
+        <button type="submit" class="btn btn-info mt-3">Registrati</button>
+        <a href="@Url.Action("Login", "Login")" class="btn btn-outline-warning mt-3">Già utente?</a>
+    }
+</div>
+
+@if (ViewBag.AuthError != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.AuthError
+    </div>
+}
+
+
+
+

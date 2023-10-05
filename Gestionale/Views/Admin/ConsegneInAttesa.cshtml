@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "ConsegneInAttesa";
+}
+
+
+
+<div class="container text-center mt-5">
+
+    <h2>Lista delle consegne in attesa </h2>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-hover text-center w-75 mx-auto">
+
+            <thead class="bg-warning">
+                <tr>
+                    <th>Destinazione</th>
+                    <th>Indirizzo Spedizione</th>
+                    <th>Peso</th>
+                    <th>Costo</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody class="bg-warning bg-opacity-25" id="tabellaSpedizioni">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("AttesaConsegna", "Corriere")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Popola la tabella con i dati JSON
+                    var tableBody = $('#tabellaSpedizioni');
+                    $.each(data, function (index, item) {
+                        var row = '<tr>';
+                        row += '<td>' + item.Destinazione + '</td>';
+                        row += '<td>' + item.indirizzo + '</td>';
+                        row += '<td>' + item.Peso + "g" + '</td>';
+                        row += '<td>' + item.Costo + "€" + '</td>';
+                        row += '<td>' + item.Nome + '</td>';
+                     
+
+                        row += '</tr>';
+                        tableBody.append(row);
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+}

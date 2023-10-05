@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+
+<div class="header-bg">
+
+    <h2>Benvenuti al nostro servizio di spedizioni</h2>
+    <p>
+        Siamo lieti di darti il benvenuto al servizio di spedizioni più affidabile e conveniente.
+        Con la nostra azienda di corrieri, puoi gestire facilmente tutte le tue spedizioni in un unico posto.
+        Offriamo soluzioni di spedizione rapide, sicure ed economiche per soddisfare le tue esigenze,
+        sia che tu sia un privato che vuole controllare le tue spedizioni personali o un'azienda in cerca di un partner logistico di fiducia.
+    </p>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Controlla le tue spedizioni</h5>
+                    <p class="card-text">Qui puoi controllare lo stato delle tue spedizioni.</p>
+                    @Html.ActionLink("Rintraccia la tua spedizione", "Spedizioni", "Home", null, new { @class = "btn btn-warning" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body ">
+                    <h5 class="card-title">Sei un admin?</h5>
+                    <p class="card-text">Accedi come amministratore per gestire il sistema.</p>
+                    @Html.ActionLink("Prosegui come admin", "Index", "Admin", null, new { @class = "btn btn-warning" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body shadow ">
+                    <h3 class="card-title">I nostri servizi</h3>
+                    <hr />
+                    <p class="card-text">Offriamo una vasta gamma di servizi di spedizione, tra cui:</p>
+                    <ul>
+                        <li>Spedizioni nazionali</li>
+                        <li>Spedizioni internazionali</li>
+                        <li>Spedizioni express</li>
+                        <li>Trasporto merci pesanti</li>
+                        <li>Servizi di logistica personalizzati</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card" style="height:270px" >
+                <div class="card-body shadow">
+                    <h3 class="card-title ">Contattaci</h3>
+                    <hr />
+                    <p class="card-text">Hai domande o hai bisogno di assistenza? Vuoi spedire un pacco?</p>
+                    <p>Contattaci al numero: <strong>+123-456-7890</strong></p>
+                    <p>Indirizzo email: <a href="mailto:info@aziendacorrieri.com">info@aziendacorrieri.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card" >
+                <div class="card-body shadow">
+                 
+                    <h3 class="card-title">Tracciabilità avanzata</h3>
+                       <hr />
+                    <p class="card-text">Monitora in tempo reale il percorso delle tue spedizioni grazie alla nostra tecnologia di tracciamento avanzata.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card" >
+                <div class="card-body shadow">
+                    <h3 class="card-title">Spedizioni internazionali</h3>
+                    <hr />
+                    <p class="card-text">Affidati a noi per le tue spedizioni internazionali. Copriamo tutto il mondo con consegne rapide e sicure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

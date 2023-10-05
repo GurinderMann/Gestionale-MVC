@@ -1,0 +1,89 @@
+﻿@model Gestionale.Models.Spedizione
+
+@{
+    ViewBag.Title = "Modifica";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container ">
+        <div class="row mx-auto">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="card w-75">
+                    <div class="card-body shadow">
+                        <h4>Modifica Spedizione</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+
+                        <div class="form-group">
+                            <label class="form-label"> Ordine effettuato il: </label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DataSpedizione, new { htmlAttributes = new { @class = "form-control", Type = "date" } })
+                                @Html.ValidationMessageFor(model => model.DataSpedizione, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Peso: </label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Città di arrivo: </label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Destinazione, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Destinazione, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Indirizzo di arrivo: </label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.indirizzo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.indirizzo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Indirizzato a: </label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Prezzo totale: </label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control", type = "text" })
+                                @Html.ValidationMessageFor(model => model.Costo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <a href="@Url.Action("Stato", "Admin", new { idSpedizione = Model.id })" class="btn btn-info mt-3 mb-3">Gestisci Stato Spedizione</a>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Salva" class="btn btn-outline-warning" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Gestionale.Models.Spedizione>
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>La spedizione da lei cercata </h2>
+
+<div class="table-responsive">
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>Destinazione</th>
+                <th>Indirizzo</th>
+                <th>Peso</th>
+                <th>Data Spedizione</th>
+                <th>Costo</th>
+                <th>Nome</th>
+                <th>Verifica Stato spedizione</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Gestionale.Models.Spedizione s in Model)
+            {
+                <tr>
+                    <td>@s.Destinazione</td>
+                    <td>@s.indirizzo</td>
+                    <td>@s.Peso g</td>
+                    <td>@s.DataSpedizione.ToString("dd/MM/yyyy")</td>
+                    <td>@string.Format("{0:C}", s.Costo)</td>
+                    <td>@s.Nome</td>
+                    <td>  <a href="@Url.Action("Stato", "Home", new { idSpedizione = s.id })" class="btn btn-primary">Stato Spedizione</a> </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,73 @@
+﻿@model Gestionale.Models.Spedizione
+
+@{
+    ViewBag.Title = "Nuova";
+}
+
+<div class="container ">
+    <div class="row mx-auto">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="card w-75">
+                <div class="card-body shadow">
+                    <h2 class="card-title">Nuova Spedizione</h2> 
+                    <hr />
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label class="form-label"> Ordine effettuato il: </label>
+                    @Html.EditorFor(model => model.DataSpedizione, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.DataSpedizione, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label"> Peso: </label>
+                    @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+                </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Città di arrivo: </label>
+                            @Html.EditorFor(model => model.Destinazione, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Destinazione, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Indirizzo di arrivo: </label>
+                            @Html.EditorFor(model => model.indirizzo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.indirizzo, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Indirizzato a: </label>
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"> Prezzo totale: </label>
+                            @Html.EditorFor(model => model.Costo, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.Costo, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Inviato da: </label>
+                            @Html.DropDownListFor(m => m.IdCliente,
+                                                    new SelectList(ViewBag.Clienti, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Crea" class="btn btn-outline-success mt-3" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

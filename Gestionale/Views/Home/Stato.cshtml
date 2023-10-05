@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Gestionale.Models.Stato>
+@{
+    ViewBag.Title = "Stato";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="tracking-container">
+            <div class="card-body">
+                <h2 class="card-title">Dettagli Spedizione</h2>
+                <hr />
+                @if (ViewBag.SpedizioneDettaglio != null)
+                {
+                    <p><strong>Codice spedizione  :</strong> @ViewBag.SpedizioneDettaglio.id</p>
+                    <p><strong>Data Ordine:</strong> @ViewBag.SpedizioneDettaglio.DataSpedizione.ToShortDateString()</p>
+                    <p><strong>Peso:</strong> @ViewBag.SpedizioneDettaglio.Peso g</p>
+                    <p><strong>Destinazione:</strong> @ViewBag.SpedizioneDettaglio.Destinazione</p>
+                    <p><strong>Indirizzo:</strong> @ViewBag.SpedizioneDettaglio.indirizzo</p>
+                    <p><strong>Nome:</strong> @ViewBag.SpedizioneDettaglio.Nome</p>
+                    <p><strong>Costo:</strong> @ViewBag.SpedizioneDettaglio.Costo.ToString("C")</p>
+
+                }
+                else
+                {
+                    <p>Nessun dettaglio disponibile.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="tracking-container">
+            <h2 class="mb-4">Tracking della Spedizione</h2>
+
+            @foreach (Gestionale.Models.Stato s in Model)
+            {
+                <div class="tracking-item @(s.StatoSpedizione.Contains("In Consegna") || s.StatoSpedizione.Contains("Consegnato") ? "green-tracking" : "")">
+                    <p class="tracking-date">Data di Aggiornamento: @s.DataAggiornamento.ToString("dd/MM/yyyy")</p>
+                    <p class="tracking-status">Stato Spedizione: @s.StatoSpedizione</p>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>

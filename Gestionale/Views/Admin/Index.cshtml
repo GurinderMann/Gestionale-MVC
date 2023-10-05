@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Gestionale.Models.Spedizione>
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row">
+
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block shadow sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="#">
+                            Admin Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="@Url.Action("Nuova", "Admin")">
+                            Crea nuova Spedizione
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="@Url.Action("NewCliente", "Admin")">
+                            Crea nuovo Cliente
+                        </a>
+                    </li>    
+                    
+                   
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="@Url.Action("InConsegnaOggi", "Admin")">
+                            Spedizioni in consegna 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="@Url.Action("ConsegneInAttesa", "Admin")">
+                            Verifica le spedizioni in attesa di consegna
+                        </a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="@Url.Action("Citta", "Admin")">
+                            Verifica le spedizioni raggruppate per Città
+                        </a>
+                    </li>
+                   
+                   
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+         
+            <h2>Lista di tutte le spedizioni</h2>
+
+            <div class="table-responsive">
+                <table class="table  table-hover  ">
+                    <thead>
+                        <tr>
+                            <th>Destinazione</th>
+                            <th>Indirizzo</th>
+                            <th>Peso</th>
+                            <th>Data Spedizione</th>
+                            <th>Costo</th>
+                            <th>Nome</th>
+                            <th>Modifica</th>
+                            <th>Gestione</th>
+                            <th>Elimina</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Gestionale.Models.Spedizione s in Model)
+                        {
+                            <tr>
+                                <td>@s.Destinazione</td>
+                                <td>@s.indirizzo</td>
+                                <td>@s.Peso</td>
+                                <td>@s.DataSpedizione.ToString("dd/MM/yyyy")</td>
+                                <td>@string.Format("{0:C}", s.Costo)</td>
+                                <td>@s.Nome</td>
+                                <td><a href="@Url.Action("Modifica", "Admin", new { idSpedizione = s.id })" class="btn btn-outline-warning">Modifica</a></td>
+                                <td><a href="@Url.Action("Stato", "Admin", new { idSpedizione = s.id })" class="btn btn-outline-info">Stato</a></td>
+                                <td><a href="@Url.Action("Elimina", "Admin")?id=@s.id" class="btn btn-danger">Elimina</a></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model Gestionale.Models.Spedizione
+
+@{
+    ViewBag.Title = "Elimina Spedizione";
+    
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h2 class="card-title">Elimina Spedizione</h2>
+                </div>
+                <div class="card-body">
+                    <p>Sei sicuro di voler eliminare questa spedizione?</p>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.id)
+
+                        <div class="form-group text-center">
+                            <input type="submit" value="Elimina" class="btn btn-danger" />
+                            <a href="@Url.Action("Index", "Admin")" class="btn btn-warning">Annulla</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
