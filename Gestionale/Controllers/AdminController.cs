@@ -213,6 +213,48 @@ namespace Gestionale.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
+        public ActionResult ListaClienti()
+        {
+            string conn = ConfigurationManager.ConnectionStrings["GestionaleDB"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(conn);
+            List<Cliente> clienti = new List<Cliente>();
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM ANAGRAFE ", sqlConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    int Id = Convert.ToInt32(reader["IdCliente"]);
+                    string nome = reader["Nome"].ToString();
+                    string CF = reader["CF O P.IVA"].ToString();
+                   
+                    Cliente cliente = new Cliente
+                    {
+                        idCliente = Id,
+                        Nome = nome,
+                        CFoPIVA = CF,
+                    };
+
+                    clienti.Add(cliente);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+            }
+            finally { sqlConnection.Close(); }
+
+            Cliente.ListaClienti= clienti;
+            return View(Cliente.ListaClienti);
+        }
+
+
+      
+
+      
 
         //Codice per gestire lo stato delle spedizioni
         public ActionResult Stato(int idSpedizione)

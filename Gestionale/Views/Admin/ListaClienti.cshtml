@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Gestionale.Models.Cliente>
+@{
+    ViewBag.Title = "ListaClienti";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="container-fluid w-50">
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <h2>Lista dei clienti</h2>
+
+        <div class="table-responsive text-center">
+            <table class="table  table-hover  ">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Codice fiscale o P.IVA</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Gestionale.Models.Cliente cliente in Model)
+                    {
+                        <tr>
+
+                            <td>@cliente.Nome</td>
+                            <td>@cliente.CFoPIVA</td>
+                           <td>
+                           
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</div>
+
+
